@@ -782,13 +782,13 @@
         overlay.addEventListener('click', closeDateCard);
 
         // FIX: Prevent zoom on double-tap but keep full clickable area
-        yesBlossom.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-        }, { passive: false });
+        // yesBlossom.addEventListener('touchstart', (e) => {
+        //     e.preventDefault();
+        // }, { passive: false });
         
-        noBlossom.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-        }, { passive: false });
+        // noBlossom.addEventListener('touchstart', (e) => {
+        //     e.preventDefault();
+        // }, { passive: false });
 
         setTimeout(() => {
             whisperMessage("baba... there's something I've been meaning to tell you 🌷");
