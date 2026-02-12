@@ -1,906 +1,796 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
-    <title>A tiny universe just for you 🌷</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>will you be my valentine? 💕</title>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;600&display=swap");
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      body {
-        background: linear-gradient(145deg, #1a1b2f 0%, #2a1e2c 100%);
-        font-family: "Quicksand", sans-serif;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        position: relative;
-        overflow-x: hidden;
-      }
-
-      .float-heart {
-        position: fixed;
-        color: rgba(255, 192, 203, 0.3);
-        font-size: 20px;
-        animation: float 8s linear infinite;
-        user-select: none;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      @keyframes float {
-        0% {
-          transform: translateY(100vh) scale(0.5);
-          opacity: 0.8;
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-        100% {
-          transform: translateY(-100px) scale(1.5);
-          opacity: 0;
+
+        body {
+            background: linear-gradient(145deg, #1a1b2f 0%, #2a1e2c 100%);
+            font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
         }
-      }
 
-      .dream-box {
-        background: rgba(255, 245, 240, 0.9);
-        backdrop-filter: blur(15px);
-        border-radius: 48px;
-        padding: 40px 30px;
-        max-width: 800px;
-        width: 100%;
-        box-shadow:
-          0 20px 40px rgba(0, 0, 0, 0.2),
-          0 0 0 2px rgba(255, 220, 220, 0.5),
-          0 0 40px rgba(255, 180, 180, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        position: relative;
-        z-index: 10;
-        transition: all 0.5s ease;
-      }
-
-      .orb {
-        position: absolute;
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        background: radial-gradient(
-          circle at 30% 30%,
-          rgba(255, 200, 200, 0.4),
-          rgba(255, 150, 150, 0.1)
-        );
-        filter: blur(30px);
-        z-index: 0;
-      }
-
-      .orb-1 {
-        top: -20px;
-        left: -20px;
-      }
-      .orb-2 {
-        bottom: -30px;
-        right: -20px;
-        background: radial-gradient(
-          circle at 70% 70%,
-          rgba(200, 180, 255, 0.4),
-          rgba(150, 150, 255, 0.1)
-        );
-      }
-
-      .creature-circle {
-        width: 260px;
-        height: 260px;
-        margin: 0 auto 25px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.6);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px;
-        box-shadow:
-          0 0 0 5px rgba(255, 255, 255, 0.8),
-          0 0 0 12px rgba(255, 180, 190, 0.3);
-        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
-
-      #soul-gif {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 50%;
-        transition: opacity 0.5s ease;
-        border: 3px solid white;
-      }
-
-      .whisper-title {
-        font-family: "Dancing Script", cursive;
-        font-size: 2.8rem;
-        background: linear-gradient(135deg, #c63b4a, #b23b4a, #9e3b4a);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        text-align: center;
-        margin-bottom: 10px;
-        letter-spacing: 2px;
-        text-shadow: 2px 2px 10px rgba(255, 200, 200, 0.5);
-        line-height: 1.2;
-      }
-
-      .button-garden {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 35px;
-        margin-top: 40px;
-        flex-wrap: wrap;
-        position: relative;
-        min-height: 120px;
-      }
-
-      .bloom-btn {
-        border: none;
-        border-radius: 120px;
-        font-family: "Quicksand", sans-serif;
-        font-weight: 700;
-        font-size: 1.3rem;
-        padding: 18px 45px;
-        cursor: pointer;
-        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        letter-spacing: 2px;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        border: 2px solid rgba(255, 255, 255, 0.8);
-        white-space: nowrap;
-        -webkit-touch-callout: none;
-        /* FIX: Full button clickable area */
-        display: inline-block;
-        width: auto;
-        min-width: 160px;
-        text-align: center;
-        z-index: 50;
-        touch-action: manipulation;
-      }
-
-      .bloom-btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        transition: left 0.6s;
-      }
-
-      .bloom-btn:hover::before {
-        left: 100%;
-      }
-
-      #yes-blossom {
-        background: linear-gradient(145deg, #ff8a9c, #ff6b81);
-        color: white;
-        border: 2px solid #fff5e6;
-        box-shadow: 0 10px 30px #ffb6c1;
-        z-index: 60;
-      }
-
-      #yes-blossom:hover {
-        transform: scale(1.15) rotate(2deg);
-        background: linear-gradient(145deg, #ff9aac, #ff7b91);
-        box-shadow: 0 15px 40px #ff9aac;
-      }
-
-      #no-blossom {
-        background: linear-gradient(145deg, #6c5b7b, #56506e);
-        color: #fdeff2;
-        border: 2px solid #cfb3cd;
-        max-width: 250px;
-        z-index: 70;
-        touch-action: pan-y;
-        /* FIX: Ensure full clickable area */
-        display: inline-block;
-        width: auto;
-        min-width: 160px;
-      }
-
-      .sparkle {
-        position: absolute;
-        pointer-events: none;
-        font-size: 12px;
-        animation: twinkle 1s ease-out forwards;
-      }
-
-      @keyframes twinkle {
-        0% {
-          transform: scale(0.2) rotate(0deg);
-          opacity: 1;
+        .float-heart {
+            position: fixed;
+            color: rgba(255, 192, 203, 0.3);
+            font-size: 20px;
+            animation: float 8s linear infinite;
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
         }
-        100% {
-          transform: scale(1.8) rotate(45deg);
-          opacity: 0;
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0.8; }
+            100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
         }
-      }
 
-      .cloud-message {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background: rgba(44, 62, 80, 0.95);
-        backdrop-filter: blur(8px);
-        color: #fff9e6;
-        padding: 16px 32px;
-        border-radius: 60px;
-        font-size: 1.1rem;
-        font-weight: 500;
-        letter-spacing: 1px;
-        box-shadow:
-          0 10px 30px rgba(0, 0, 0, 0.2),
-          0 0 0 2px rgba(255, 215, 215, 0.5);
-        z-index: 999;
-        opacity: 0;
-        transition:
-          opacity 0.3s ease,
-          transform 0.3s ease;
-        border: 1px solid rgba(255, 255, 255, 0.6);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        pointer-events: none;
-      }
-
-      .cloud-message.show {
-        opacity: 1;
-        transform: translateX(-50%) translateY(-10px);
-      }
-
-      .date-card {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) scale(0.8);
-        background: linear-gradient(145deg, #fff9f0, #ffe8e8);
-        padding: 40px;
-        border-radius: 40px;
-        box-shadow:
-          0 30px 60px rgba(210, 80, 100, 0.4),
-          0 0 0 6px rgba(255, 220, 220, 0.6);
-        z-index: 1000;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-        max-width: 500px;
-        width: 90%;
-        border: 2px solid white;
-        text-align: center;
-      }
-
-      .date-card.show {
-        opacity: 1;
-        visibility: visible;
-        transform: translate(-50%, -50%) scale(1);
-      }
-
-      .date-card .pizza-emoji {
-        font-size: 70px;
-        margin-bottom: 20px;
-        animation: bounce 2s infinite;
-      }
-
-      @keyframes bounce {
-        0%,
-        100% {
-          transform: translateY(0);
-        }
-        50% {
-          transform: translateY(-15px);
-        }
-      }
-
-      .date-card h2 {
-        font-family: "Dancing Script", cursive;
-        font-size: 2.5rem;
-        color: #c4455a;
-        margin-bottom: 25px;
-        text-shadow: 2px 2px 0 #ffe6e6;
-      }
-
-      .date-message {
-        background: rgba(255, 255, 255, 0.7);
-        padding: 25px;
-        border-radius: 25px;
-        margin: 20px 0;
-        border: 2px dashed #ff9a9e;
-      }
-
-      .date-message p {
-        font-size: 1.2rem;
-        line-height: 1.8;
-        color: #4a3b4a;
-        font-weight: 500;
-      }
-
-      .hero-badge {
-        background: #ffd700;
-        color: #2a1e2c;
-        padding: 12px 25px;
-        border-radius: 50px;
-        display: inline-block;
-        margin-top: 20px;
-        font-weight: bold;
-        font-size: 1.2rem;
-        box-shadow: 0 5px 0 #b8860b;
-      }
-
-      .close-date {
-        margin-top: 30px;
-        padding: 15px 35px;
-        background: linear-gradient(145deg, #ff8a9c, #ff6b81);
-        color: white;
-        border: none;
-        border-radius: 50px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        cursor: pointer;
-        border: 2px solid white;
-        transition: all 0.3s ease;
-      }
-
-      .close-date:hover {
-        transform: scale(1.1);
-        background: linear-gradient(145deg, #ff9aac, #ff7b91);
-      }
-
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.7);
-        backdrop-filter: blur(8px);
-        z-index: 999;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s ease;
-      }
-
-      .overlay.show {
-        opacity: 1;
-        visibility: visible;
-      }
-
-      .music-charm {
-        position: fixed;
-        top: 25px;
-        right: 25px;
-        width: 55px;
-        height: 55px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.9);
-        border: 2px solid rgba(255, 120, 140, 0.7);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        cursor: pointer;
-        backdrop-filter: blur(5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
-        z-index: 999;
-        color: #6b4e5e;
-        -webkit-tap-highlight-color: transparent;
-      }
-
-      .music-charm:hover {
-        transform: scale(1.15) rotate(15deg);
-        background: white;
-        border-color: #ff8a9c;
-      }
-
-      .secret-confession {
-        text-align: center;
-        margin-top: 20px;
-        min-height: 40px;
-        color: #8a5a6a;
-        font-weight: 500;
-        font-size: 1.1rem;
-        padding: 10px;
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 30px;
-        backdrop-filter: blur(5px);
-        transition: all 0.5s ease;
-      }
-
-      @media (max-width: 600px) {
         .dream-box {
-          padding: 25px 20px;
+            background: rgba(255, 245, 240, 0.9);
+            backdrop-filter: blur(15px);
+            border-radius: 48px;
+            padding: 40px 30px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 
+                0 20px 40px rgba(0,0,0,0.2),
+                0 0 0 2px rgba(255, 220, 220, 0.5),
+                0 0 40px rgba(255, 180, 180, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 10;
+            transition: all 0.5s ease;
         }
+
+        .orb {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,200,200,0.4), rgba(255,150,150,0.1));
+            filter: blur(30px);
+            z-index: 0;
+        }
+
+        .orb-1 { top: -20px; left: -20px; }
+        .orb-2 { bottom: -30px; right: -20px; background: radial-gradient(circle at 70% 70%, rgba(200,180,255,0.4), rgba(150,150,255,0.1)); }
+
+        .creature-circle {
+            width: 240px;
+            height: 240px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-shadow: 
+                0 0 0 5px rgba(255, 255, 255, 0.8),
+                0 0 0 12px rgba(255, 180, 190, 0.3);
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        #soul-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            transition: opacity 0.5s ease;
+            border: 3px solid white;
+        }
+
         .whisper-title {
-          font-size: 2rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #c63b4a, #b23b4a, #9e3b4a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 10px rgba(255, 200, 200, 0.5);
+            line-height: 1.2;
         }
+
+        .question-bubble {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 40px 40px 40px 10px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px dashed #ff9a9e;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(255, 150, 150, 0.2);
+        }
+
+        .secret-confession {
+            text-align: center;
+            min-height: 70px;
+            color: #4a3b4a;
+            font-weight: 500;
+            font-size: 1.25rem;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+            transition: all 0.5s ease;
+            font-style: italic;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.5;
+        }
+
+        /* 💚 GREEN RESPONSE BUBBLE for NO clicks */
+        .response-bubble {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%) scale(0.8);
+            background: linear-gradient(145deg, #4caf92, #2e7d5e);
+            color: white;
+            padding: 18px 32px;
+            border-radius: 60px 60px 60px 10px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 15px 30px rgba(180, 182, 181, 0.3);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            max-width: 80%;
+            white-space: nowrap;
+        }
+
+        .response-bubble.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) scale(1);
+        }
+
         .button-garden {
-          gap: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
+
         .bloom-btn {
-          padding: 16px 30px;
-          font-size: 1.1rem;
-          white-space: normal;
-          min-width: 140px;
+            border: none;
+            border-radius: 120px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 16px 40px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 2px solid rgba(255,255,255,0.8);
+            white-space: nowrap;
+            display: inline-block;
+            min-width: 160px;
+            text-align: center;
+            z-index: 50;
         }
+
+        .bloom-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.6s;
+        }
+
+        .bloom-btn:hover::before {
+            left: 100%;
+        }
+
+        #yes-blossom {
+            background: linear-gradient(145deg, #ff8a9c, #ff6b81);
+            color: white;
+            border: 2px solid #fff5e6;
+            box-shadow: 0 10px 30px #ffb6c1;
+        }
+
+        #yes-blossom:hover {
+            transform: scale(1.1) rotate(2deg);
+            background: linear-gradient(145deg, #ff9aac, #ff7b91);
+            box-shadow: 0 15px 40px #ff9aac;
+        }
+
         #no-blossom {
-          max-width: 200px;
-          min-width: 140px;
+            background: linear-gradient(145deg, #6c5b7b, #56506e);
+            color: #fdeff2;
+            border: 2px solid #cfb3cd;
+            transition: all 0.3s ease;
         }
-        .date-card {
-          padding: 25px;
+
+        #no-blossom:hover {
+            transform: scale(0.95);
+            background: linear-gradient(145deg, #56506e, #6c5b7b);
         }
-        .date-card h2 {
-          font-size: 2rem;
+
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            font-size: 12px;
+            animation: twinkle 1s ease-out forwards;
         }
-      }
+
+        @keyframes twinkle {
+            0% { transform: scale(0.2) rotate(0deg); opacity: 1; }
+            100% { transform: scale(1.8) rotate(45deg); opacity: 0; }
+        }
+
+        .cloud-message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(44, 62, 80, 0.95);
+            backdrop-filter: blur(8px);
+            color: #fff9e6;
+            padding: 16px 32px;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .cloud-message.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-10px);
+        }
+
+        .invitation-card {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: linear-gradient(145deg, #fff9f0, #ffe8e8);
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(210, 80, 100, 0.4), 0 0 0 6px rgba(255, 220, 220, 0.6);
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            max-width: 500px;
+            width: 90%;
+            border: 2px solid white;
+            text-align: center;
+        }
+
+        .invitation-card.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .invitation-card .pizza-emoji {
+            font-size: 70px;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .invitation-card h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.3rem;
+            color: #c4455a;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0 #ffe6e6;
+        }
+
+        .response-header {
+            background: rgba(255, 200, 200, 0.4);
+            padding: 12px 20px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #b23b4a;
+            border: 2px dashed #ff9a9e;
+            backdrop-filter: blur(5px);
+        }
+
+        .date-message {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 25px;
+            border-radius: 25px;
+            margin: 20px 0;
+            border: 2px dashed #ff9a9e;
+        }
+
+        .date-message p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #4a3b4a;
+            font-weight: 500;
+        }
+
+        .hero-badge {
+            background: #ffd700;
+            color: #2a1e2c;
+            padding: 10px 20px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 0 #b8860b;
+        }
+
+        .close-btn {
+            margin-top: 25px;
+            padding: 15px 35px;
+            background: linear-gradient(145deg, #ff8a9c, #ff6b81);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid white;
+            transition: all 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(145deg, #ff9aac, #ff7b91);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .music-charm {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(255, 120, 140, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            z-index: 999;
+            color: #6b4e5e;
+        }
+
+        .music-charm:hover {
+            transform: scale(1.15) rotate(15deg);
+            background: white;
+            border-color: #ff8a9c;
+        }
+
+        @media (max-width: 600px) {
+            .dream-box { padding: 25px 20px; }
+            .whisper-title { font-size: 2rem; }
+            .creature-circle { width: 180px; height: 180px; }
+            .bloom-btn { 
+                padding: 14px 25px; 
+                font-size: 1.1rem;
+                min-width: 140px;
+            }
+            .secret-confession { font-size: 1.1rem; }
+            .invitation-card { padding: 25px; }
+            .invitation-card h2 { font-size: 2rem; }
+            .response-bubble { 
+                font-size: 1rem; 
+                padding: 14px 25px;
+                white-space: normal;
+                width: 90%;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
+
     <div id="float-container"></div>
 
     <div class="music-charm" id="music-charm">🎵</div>
-
     <div id="cloud-message" class="cloud-message">
-      <span>✨</span>
-      <span id="cloud-text">psst... click the bloom</span>
+        <span>💭</span>
+        <span id="cloud-text">keep clicking... 💕</span>
     </div>
 
     <div id="overlay" class="overlay"></div>
 
-    <div id="date-card" class="date-card">
-      <div class="pizza-emoji">🍕✨</div>
-      <h2>You said Yes! 💖</h2>
-      <div class="date-message">
-        <p style="font-size: 1.4rem; margin-bottom: 15px">My love... 💕</p>
-        <p>📅 <strong>Book your day for the 16th evening!</strong></p>
-        <p>
-          🍕 Let's go to <strong>Pizza Buona</strong> — I know you love pizza!
-        </p>
-        <p>🚏 Wait for me at the <strong>campus bus halt</strong> as usual</p>
-        <p style="margin-top: 20px; font-size: 1.3rem">
-          ❤️ Just you, me, and pizza ❤️
-        </p>
-      </div>
-      <button id="close-date" class="close-date">Can't wait! 🥰</button>
+    <!-- 💚 GREEN Response Bubble for NO clicks -->
+    <div id="response-bubble" class="response-bubble">
+        💚 <span id="response-text"></span>
+    </div>
+
+    <!-- Invitation Card - Shows on EVERY YES click with response at top -->
+    <div id="invitation-card" class="invitation-card">
+        <div id="invitation-response" class="response-header"></div>
+        <div class="date-message">
+            <p style="font-size: 1rem; margin-bottom: 15px;">My love... 💕</p>
+            <p>📅 <strong>Book your day for the 16th evening!</strong></p>
+            <p>🍕 Let's go for a <strong>pizza date</strong> — I know you love pizza!</p>
+            <p>🚏 Wait for me at the <strong>campus bus halt</strong> as usual</p>
+        </div>
+        <button id="close-invitation" class="close-btn">Can't wait! 🥰</button>
     </div>
 
     <div class="dream-box">
-      <div class="orb orb-1"></div>
-      <div class="orb orb-2"></div>
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
 
-      <div class="creature-circle">
-        <img
-          id="soul-gif"
-          src="assets/sappy-sappy-seals.gif"
-          alt="sappy seals 🦭"
-        />
-      </div>
+        <div class="creature-circle">
+            <img id="soul-gif" src="assets/sappy-sappy-seals.gif" alt="sappy seals 🦭">
+        </div>
 
-      <div class="whisper-title">to my favorite universe</div>
+        <div class="whisper-title">
+            will you be my valentine? 💭
+        </div>
 
-      <div id="secret-confession" class="secret-confession">
-        💌 Will you be my Valentine? 💕
-      </div>
+        <div class="question-bubble">
+            <div id="secret-confession" class="secret-confession">
+                💌 Would you be my Valentine? 💕
+            </div>
+        </div>
 
-      <div class="button-garden">
-        <button id="yes-blossom" class="bloom-btn">yes ❤️</button>
-        <button id="no-blossom" class="bloom-btn">hmm... no 🌱</button>
-      </div>
+        <div class="button-garden">
+            <button id="yes-blossom" class="bloom-btn">yes ❤️</button>
+            <button id="no-blossom" class="bloom-btn">no 🌱</button>
+        </div>
     </div>
 
-    <!-- FIX: Audio with correct path and preload -->
     <audio id="sweet-melody" preload="auto" loop>
-      <source
-        src="music/beabadoobee - Glue Song (Lyrics).mp3"
-        type="audio/mpeg"
-      />
-      Your browser doesn't support audio.
+        <source src="music/beabadoobee - Glue Song (Lyrics).mp3" type="audio/mpeg">
     </audio>
 
     <script>
-      // ---------------------------------------------------------
-      // FIXED: Audio now plays + full button clickable area!
-      // ---------------------------------------------------------
+        const soulStages = [
+            "assets/sappy-sappy-seals.gif",           
+            "assets/sappy-sappy-seals.gif", 
+            "assets/sappy-sappy-seals.gif",             
+            "assets/sappy-sappy-seals.gif",        
+            "assets/sappy-sappy-seals.gif",             
+            "assets/sappy-sappy-seals.gif"           
+        ];
 
-      const soulStages = [
-        "assets/sappy-sappy-seals.gif",
-        "https://media1.tenor.com/m/uDugCXK4vI4AAAAd/chiikawa-hachiware.gif",
-        "https://media.tenor.com/f_rkpJbH1s8AAAAj/somsom1012.gif",
-        "https://media.tenor.com/OGY9zdREsVAAAAAj/somsom1012.gif",
-        "https://media1.tenor.com/m/WGfra-Y_Ke0AAAAd/chiikawa-sad.gif",
-        "https://media.tenor.com/CivArbX7NzQAAAAj/somsom1012.gif",
-        "https://media.tenor.com/5_tv1HquZlcAAAAj/chiikawa.gif",
-        "https://media1.tenor.com/m/uDugCXK4vI4AAAAC/chiikawa-hachiware.gif",
-      ];
+        // 💌 Questions - romantic and playful
+        const questions = [
+            "💌 Would you be my Valentine? 💕",
+            "Baby, Do you want to know why I like you? 😉",
+            "Would you trust me to plan something thoughtful? 😇",
+            "I believe sunsets are better when shared. Agree? 🌅",
+            "Want to know about my superpowers? 🦸‍♂️",
+            "Do you secretly enjoy my terrible jokes? 😂",
+            "If I promised pizza, would you say yes? 🍕",
+            "Should I tell you how many kids I want? 😏",
+            "Do you know who's the most popular girl with glasses? 👀",
+            "Chooty!! Do you know why girls get dimples? 😄",
+            "Are you ready to find out what all this teasing was about? 🎉"
+        ];
 
-      const tenderRebukes = [
-        "no? 🥺",
-        "baba... 💕",
-        "pookie 💗",
-        "please? 🥺",
-        "don't 💔",
-        "stop 😢",
-        "you're mine 😭",
-        "last chance! 💗",
-        "Just say yes Sammm!!! 🏃",
-      ];
+        // 💚 NO Responses - show in GREEN bubble
+        const noResponses = [
+            "I knew this is not going to be easy! 😅",
+            "Hmm, One day maybe I'll tell you! 😂",
+            "Fair enough… 😜",
+            "Yeah these days sun is too bright! 🌞",
+            "You caught me, I’m not really a superhero 🦸‍♂️",
+            "But you do laugh.. 😂",
+            "Baby. Pizza will forgive you... eventually 🍕",
+            "Manyyy 🤫",
+            "You!! bad girl 👀",
+            "Dimples = secrets! 🤫",
+            "You just love suspense, don’t you? 😅 Please come for a surprise! 🎁"
+        ];
 
-      const earlyYesWhispers = [
-        "try the other bloom first 🌸",
-        "click the little 'no' 🌱",
-        "curious heart! 👀💗",
-        "one tiny 'no' first 💫",
-        "baba... earn the yes 💕",
-        "patience, my love 🌙",
-      ];
+        // 💕 YES Responses - show at top of invitation
+        const yesResponses = [
+            "💖 YES!!!! 💖",
+            "🥰 I KNEW IT! 🥰",
+            "💘 YOU'RE ADORABLE! 💘",
+            "🌅 SUNSETS WITH YOU! 🌅",
+            "🦸‍♂️ YOUR SUPERHERO! 🦸‍♂️",
+            "😂 TERRIBLE JOKES ACCEPTED! 😂",
+            "🍕 PIZZA DATE CONFIRMED! 🍕",
+            "😳 FAMILY PLANNING ACTIVATED! 😳",
+            "👀 THE GIRL WITH GLASSES! 👀",
+            "😄 DIMPLES OF JOY! 😄",
+            "💖 YES!!!! 💖"
+        ];
 
-      const secretNotes = [
-        "I think about you before I fall asleep 😂💕",
-        "but my heart only beats for you 💕",
-        "you make my heart flutter 🐾",
-        "you're my favorite hello 💗",
-        "I smile when you text 😊",
-        "you feel like coming home 🏠",
-        "loving you is easy 🌸",
-        "you're mine 🌌",
-        "I'd wait forever 💫",
-      ];
+        // Game variables
+        let currentQuestion = 0;
+        let melodyPlaying = false;
+        let audioPlayed = false;
 
-      let yesCuriosityCount = 0;
-      let noHeartbeatCount = 0;
-      let runawayHeart = false;
-      let melodyPlaying = false; // Start false, will be set to true after first play
-      let secretIndex = 0;
-      let lastEscapeTime = 0;
-      const ESCAPE_COOLDOWN = 800;
-      let audioPlayed = false; // Track if audio has been attempted
+        // DOM elements
+        const soulGif = document.getElementById("soul-gif");
+        const yesBtn = document.getElementById("yes-blossom");
+        const noBtn = document.getElementById("no-blossom");
+        const secretConf = document.getElementById("secret-confession");
+        const invitationCard = document.getElementById("invitation-card");
+        const closeInvitation = document.getElementById("close-invitation");
+        const overlay = document.getElementById("overlay");
+        const cloudMsg = document.getElementById("cloud-message");
+        const cloudText = document.getElementById("cloud-text");
+        const responseBubble = document.getElementById("response-bubble");
+        const responseText = document.getElementById("response-text");
+        const invitationResponse = document.getElementById("invitation-response");
+        const melody = document.getElementById("sweet-melody");
+        const musicCharm = document.getElementById("music-charm");
 
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        // ---------------------------------------------------------
+        // AUDIO SETUP
+        // ---------------------------------------------------------
+        melody.volume = 0.3;
+        melody.muted = false;
+        melody.preload = "auto";
 
-      const soulGif = document.getElementById("soul-gif");
-      const yesBlossom = document.getElementById("yes-blossom");
-      const noBlossom = document.getElementById("no-blossom");
-      const melody = document.getElementById("sweet-melody");
-      const cloudMsg = document.getElementById("cloud-message");
-      const cloudText = document.getElementById("cloud-text");
-      const secretConfession = document.getElementById("secret-confession");
-      const musicCharm = document.getElementById("music-charm");
-      const dateCard = document.getElementById("date-card");
-      const overlay = document.getElementById("overlay");
-      const closeDate = document.getElementById("close-date");
-
-      // ---------------------------------------------------------
-      // FIXED: Audio playback with better mobile support
-      // ---------------------------------------------------------
-
-      // Set audio properties
-      melody.volume = 0.4;
-      melody.muted = false;
-      melody.preload = "auto";
-
-      // Function to attempt playing audio
-      function playAudio() {
-        if (audioPlayed) return Promise.resolve();
-
-        return melody
-          .play()
-          .then(() => {
-            console.log("Audio playing successfully");
-            melodyPlaying = true;
-            audioPlayed = true;
-            musicCharm.textContent = "🎵";
-          })
-          .catch((error) => {
-            console.log("Audio autoplay blocked:", error);
-            melodyPlaying = false;
-            musicCharm.textContent = "🔇";
-            // Will play on first interaction
-          });
-      }
-
-      // Try to play audio immediately (may be blocked by browser)
-      playAudio();
-
-      // FIX: Play audio on ANY user interaction (for mobile)
-      function enableAudioOnInteraction() {
-        if (!audioPlayed) {
-          playAudio().catch(() => {});
-        }
-      }
-
-      // Listen for first touch/click anywhere
-      document.addEventListener("click", enableAudioOnInteraction, {
-        once: true,
-      });
-      document.addEventListener("touchstart", enableAudioOnInteraction, {
-        once: true,
-      });
-
-      // Toggle music function
-      function toggleMelody() {
-        if (melodyPlaying) {
-          melody.pause();
-          melodyPlaying = false;
-          musicCharm.textContent = "🔇";
-        } else {
-          melody
-            .play()
-            .then(() => {
-              melodyPlaying = true;
-              musicCharm.textContent = "🎵";
-              audioPlayed = true;
-            })
-            .catch((e) => {
-              console.log("Play failed:", e);
-            });
-        }
-      }
-      musicCharm.addEventListener("click", toggleMelody);
-
-      // ---------------------------------------------------------
-      // Rest of the functions
-      // ---------------------------------------------------------
-
-      function whisperMessage(msg) {
-        cloudText.textContent = msg;
-        cloudMsg.classList.add("show");
-        clearTimeout(cloudMsg._timer);
-        cloudMsg._timer = setTimeout(
-          () => cloudMsg.classList.remove("show"),
-          2800,
-        );
-      }
-
-      function createSparkle(x, y) {
-        const spark = document.createElement("span");
-        spark.textContent = "✨";
-        spark.style.position = "fixed";
-        spark.style.left = x + "px";
-        spark.style.top = y + "px";
-        spark.style.fontSize = Math.random() * 20 + 12 + "px";
-        spark.style.zIndex = "9999";
-        spark.style.pointerEvents = "none";
-        spark.className = "sparkle";
-        document.body.appendChild(spark);
-        setTimeout(() => spark.remove(), 900);
-      }
-
-      function swapSoul(newSrc) {
-        soulGif.style.opacity = "0";
-        setTimeout(() => {
-          soulGif.src = newSrc;
-          soulGif.style.opacity = "1";
-        }, 220);
-      }
-
-      function createFloaters() {
-        const container = document.getElementById("float-container");
-        setInterval(() => {
-          const heart = document.createElement("span");
-          heart.className = "float-heart";
-          heart.style.left = Math.random() * 100 + "%";
-          heart.style.animationDuration = Math.random() * 6 + 5 + "s";
-          heart.style.fontSize = Math.random() * 20 + 15 + "px";
-          heart.style.opacity = Math.random() * 0.3 + 0.2;
-          heart.innerHTML = [
-            "🌸",
-            "🌷",
-            "💗",
-            "✨",
-            "🌙",
-            "🦋",
-            "💕",
-            "🌺",
-            "🍕",
-          ][Math.floor(Math.random() * 9)];
-          container.appendChild(heart);
-          setTimeout(() => heart.remove(), 10000);
-        }, 500);
-      }
-      createFloaters();
-
-      function revealSecretNote() {
-        if (noHeartbeatCount >= 1) {
-          const noteIndex = Math.min(secretIndex, secretNotes.length - 1);
-          secretConfession.innerHTML = "💌 " + secretNotes[noteIndex] + " 💌";
-          secretConfession.style.opacity = "1";
-          secretIndex = (secretIndex + 1) % secretNotes.length;
-
-          const rect = secretConfession.getBoundingClientRect();
-          createSparkle(rect.left + rect.width / 2, rect.top + rect.height / 2);
-        }
-      }
-
-      function showDateCard() {
-        overlay.classList.add("show");
-        dateCard.classList.add("show");
-        soulGif.src = "assets/sappy-sappy-seals.gif";
-        whisperMessage("It's a date! 🍕💕 I can't wait!");
-
-        for (let i = 0; i < 10; i++) {
-          setTimeout(() => {
-            createSparkle(
-              Math.random() * window.innerWidth,
-              Math.random() * window.innerHeight,
-            );
-          }, i * 100);
-        }
-      }
-
-      function closeDateCard() {
-        overlay.classList.remove("show");
-        dateCard.classList.remove("show");
-        whisperMessage("See you on the 16th, my love! 💕🚗");
-      }
-
-      function handleYesClick(e) {
-        const rect = yesBlossom.getBoundingClientRect();
-        createSparkle(rect.left + rect.width / 2, rect.top);
-
-        if (!runawayHeart || noHeartbeatCount < 5) {
-          const tease =
-            earlyYesWhispers[
-              Math.min(yesCuriosityCount, earlyYesWhispers.length - 1)
-            ];
-          yesCuriosityCount++;
-          whisperMessage(tease);
-
-          if (noHeartbeatCount < 3) {
-            noBlossom.style.background =
-              "linear-gradient(145deg, #7a6a8a, #665a7a)";
-            setTimeout(
-              () =>
-                (noBlossom.style.background =
-                  "linear-gradient(145deg, #6c5b7b, #56506e)"),
-              400,
-            );
-          }
-          return;
+        function playAudio() {
+            if (audioPlayed) return Promise.resolve();
+            return melody.play()
+                .then(() => {
+                    melodyPlaying = true;
+                    audioPlayed = true;
+                    musicCharm.textContent = "🎵";
+                })
+                .catch(() => {
+                    melodyPlaying = false;
+                    musicCharm.textContent = "🔇";
+                });
         }
 
-        showDateCard();
-      }
+        playAudio();
 
-      function handleNoClick(e) {
-        if (
-          noBlossom.textContent.includes("Just say yes Sammm!!!") ||
-          noBlossom.textContent.includes("too slow Sammm!!!")
-        ) {
-          e.preventDefault();
-          e.stopPropagation();
-          return;
-        }
-        const rect = noBlossom.getBoundingClientRect();
-        createSparkle(rect.left + rect.width / 2, rect.top);
-
-        noHeartbeatCount++;
-
-        const msgIndex = Math.min(
-          noHeartbeatCount - 1,
-          tenderRebukes.length - 1,
-        );
-        noBlossom.textContent = tenderRebukes[msgIndex];
-
-        const currentSize = parseFloat(
-          window.getComputedStyle(yesBlossom).fontSize,
-        );
-
-        if (!isMobile) {
-          yesBlossom.style.fontSize = currentSize * 1.25 + "px";
-          yesBlossom.style.padding = `${Math.min(18 + noHeartbeatCount * 4, 60)}px ${Math.min(45 + noHeartbeatCount * 10, 130)}px`;
+        function enableAudioOnInteraction() {
+            if (!audioPlayed) playAudio().catch(() => {});
         }
 
-        if (noHeartbeatCount >= 2) {
-          const noSize = parseFloat(
-            window.getComputedStyle(noBlossom).fontSize,
-          );
-          noBlossom.style.fontSize = Math.max(noSize * 0.85, 14) + "px";
-          noBlossom.style.padding = "12px 20px";
+        document.addEventListener("click", enableAudioOnInteraction, { once: true });
+        document.addEventListener("touchstart", enableAudioOnInteraction, { once: true });
+
+        function toggleMelody() {
+            if (melodyPlaying) {
+                melody.pause();
+                melodyPlaying = false;
+                musicCharm.textContent = "🔇";
+            } else {
+                melody.play()
+                    .then(() => {
+                        melodyPlaying = true;
+                        musicCharm.textContent = "🎵";
+                        audioPlayed = true;
+                    })
+                    .catch(() => {});
+            }
+        }
+        musicCharm.addEventListener("click", toggleMelody);
+
+        function whisperMessage(msg) {
+            cloudText.textContent = msg;
+            cloudMsg.classList.add("show");
+            clearTimeout(cloudMsg._timer);
+            cloudMsg._timer = setTimeout(() => cloudMsg.classList.remove("show"), 2000);
         }
 
-        const gifIndex = Math.min(noHeartbeatCount, soulStages.length - 1);
-        swapSoul(soulStages[gifIndex]);
-
-        revealSecretNote();
-
-        if (noHeartbeatCount >= (isMobile ? 8 : 5) && !runawayHeart) {
-          runawayHeart = true;
-          noBlossom.style.position = "relative";
-          noBlossom.style.left = "";
-          noBlossom.style.top = "";
-
-          if (isMobile) {
-            whisperMessage("You win! Now say yes? 💕");
-            noBlossom.style.transform = "scale(0.9)";
-          } else {
-            whisperMessage("Noooo !!! 🏃💨💗");
-            enableRunawayHeart();
-          }
+        function createSparkle(x, y, count = 3) {
+            for (let i = 0; i < count; i++) {
+                const spark = document.createElement("span");
+                spark.textContent = "✨";
+                spark.style.position = "fixed";
+                spark.style.left = (x + (Math.random() - 0.5) * 50) + "px";
+                spark.style.top = (y + (Math.random() - 0.5) * 50) + "px";
+                spark.style.fontSize = Math.random() * 20 + 12 + "px";
+                spark.style.zIndex = "9999";
+                spark.style.pointerEvents = "none";
+                spark.className = "sparkle";
+                document.body.appendChild(spark);
+                setTimeout(() => spark.remove(), 900);
+            }
         }
 
-        if (noHeartbeatCount === 3) {
-          yesBlossom.style.boxShadow = "0 0 0 6px rgba(255, 150, 150, 0.4)";
+        function swapSoul(stage) {
+            soulGif.style.opacity = "0";
+            setTimeout(() => {
+                soulGif.src = soulStages[stage];
+                soulGif.style.opacity = "1";
+            }, 400);
         }
-      }
 
-      function enableRunawayHeart() {
-        if (isMobile) return;
-        noBlossom.addEventListener("mouseover", escapeMove);
-      }
-
-      function escapeMove(e) {
-        if (isMobile || !runawayHeart) return;
-
-        const now = Date.now();
-        if (now - lastEscapeTime < ESCAPE_COOLDOWN) {
-          return;
+        function createFloaters() {
+            const container = document.getElementById("float-container");
+            setInterval(() => {
+                const heart = document.createElement("span");
+                heart.className = "float-heart";
+                heart.style.left = Math.random() * 100 + "%";
+                heart.style.animationDuration = Math.random() * 6 + 5 + "s";
+                heart.style.fontSize = Math.random() * 20 + 15 + "px";
+                heart.style.opacity = Math.random() * 0.2 + 0.1;
+                heart.innerHTML = ["🌸", "🌷", "💗", "✨", "🌙", "🦋", "💕", "🌺", "🦭", "🍕"][Math.floor(Math.random() * 10)];
+                container.appendChild(heart);
+                setTimeout(() => heart.remove(), 10000);
+            }, 400);
         }
-        lastEscapeTime = now;
+        createFloaters();
 
-        e.stopPropagation();
+        // 💚 Show GREEN response bubble for NO clicks
+        function showResponseBubble(message) {
+            responseText.textContent = message;
+            responseBubble.classList.add("show");
+            
+            // Hide after 2 seconds
+            clearTimeout(responseBubble._timer);
+            responseBubble._timer = setTimeout(() => {
+                responseBubble.classList.remove("show");
+            }, 2000);
+        }
 
-        const edge = 20;
-        const btnW = noBlossom.offsetWidth;
-        const btnH = noBlossom.offsetHeight;
+        // Show invitation card with YES response at top
+        function showInvitation(responseMessage) {
+            invitationResponse.textContent = responseMessage;
+            overlay.classList.add("show");
+            invitationCard.classList.add("show");
+            swapSoul(0); // Happy seals
+            
+            // SPARKLE EXPLOSION! ✨
+            for (let i = 0; i < 10; i++) {
+                setTimeout(() => {
+                    createSparkle(
+                        Math.random() * window.innerWidth,
+                        Math.random() * window.innerHeight,
+                        4
+                    );
+                }, i * 100);
+            }
+        }
 
-        const maxX = Math.max(0, window.innerWidth - btnW - edge);
-        const maxY = Math.max(0, window.innerHeight - btnH - edge);
+        function closeInvitationCard() {
+            overlay.classList.remove("show");
+            invitationCard.classList.remove("show");
+            
+            // ✅ Move to next question after closing invitation
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                secretConf.textContent = questions[currentQuestion];
+                
+                // Update GIF based on progress
+                if (currentQuestion >= 8) {
+                    swapSoul(4); // Devastated
+                } else if (currentQuestion >= 5) {
+                    swapSoul(2); // Pleading
+                } else if (currentQuestion >= 2) {
+                    swapSoul(1); // Confused
+                }
+            }
+        }
 
-        const randomX = Math.min(maxX, Math.random() * maxX + edge / 2);
-        const randomY = Math.min(maxY, Math.random() * maxY + edge / 2);
+        
+        // 💖 YES BUTTON - Shows invitation with response
+        function handleYesClick() {
+            const rect = yesBtn.getBoundingClientRect();
+            createSparkle(rect.left + rect.width/2, rect.top, 8);
+            
+            // Get the YES response for current question
+            const response = yesResponses[currentQuestion];
+            
+            // Show the invitation with response at the top
+            showInvitation(response);
+        }
 
-        noBlossom.style.position = "fixed";
-        noBlossom.style.left = `${randomX}px`;
-        noBlossom.style.top = `${randomY}px`;
-        noBlossom.style.zIndex = "100";
+        // 💚 NO BUTTON - Shows GREEN response bubble, moves to next question
+        function handleNoClick() {
+            const rect = noBtn.getBoundingClientRect();
+            createSparkle(rect.left + rect.width/2, rect.top, 10);
+            
+            // Get the NO response for current question
+            const response = noResponses[currentQuestion];
+            
+            // Show GREEN response bubble
+            showResponseBubble(response);
+            
+            // Make no button progressively more desperate
+            if (currentQuestion >= 8) {
+                noBtn.style.transform = "scale(0.85)";
+                noBtn.style.opacity = "0.7";
+            } else if (currentQuestion >= 5) {
+                noBtn.style.transform = "scale(0.9)";
+                noBtn.style.opacity = "0.8";
+            }
+            
+            // ✅ Move to next question after bubble shows
+            setTimeout(() => {
+                if (currentQuestion < questions.length - 1) {
+                    currentQuestion++;
+                    secretConf.textContent = questions[currentQuestion];
+                    
+                    // Update GIF based on progress
+                    if (currentQuestion >= 8) {
+                        swapSoul(4); // Devastated
+                    } else if (currentQuestion >= 5) {
+                        swapSoul(2); // Pleading
+                    } else if (currentQuestion >= 2) {
+                        swapSoul(1); // Confused
+                    }
+                } else {
+                    // ✅ If it's the last question and she clicks NO, show victory YES response
+                    if (currentQuestion === questions.length - 1) {
+                        // Force show the invitation with special message
+                        setTimeout(() => {
+                            showInvitation();
+                        }, 500);
+                    }
+                }
+            }, 2000); // Delay to let bubble show
+        }
 
-        createSparkle(randomX + btnW / 2, randomY + btnH / 2);
-      }
-
-      // Event listeners
-      yesBlossom.addEventListener("click", handleYesClick);
-      noBlossom.addEventListener("click", handleNoClick);
-      closeDate.addEventListener("click", closeDateCard);
-      overlay.addEventListener("click", closeDateCard);
-
-      // FIX: Prevent zoom on double-tap but keep full clickable area
-      // yesBlossom.addEventListener('touchstart', (e) => {
-      //     e.preventDefault();
-      // }, { passive: false });
-
-      // noBlossom.addEventListener('touchstart', (e) => {
-      //     e.preventDefault();
-      // }, { passive: false });
-
-      setTimeout(() => {
-        whisperMessage(
-          "baba... there's something I've been meaning to tell you 🌷",
-        );
-      }, 600);
-
-      setTimeout(() => {
-        secretConfession.innerHTML = "💌 Will you be my Valentine? 💕 💌";
-      }, 100);
+        // Event listeners
+        yesBtn.addEventListener("click", handleYesClick);
+        noBtn.addEventListener("click", handleNoClick);
+        closeInvitation.addEventListener("click", closeInvitationCard);
+        overlay.addEventListener("click", closeInvitationCard);
+        
+        swapSoul(0); // Start with happy seals
     </script>
-  </body>
+</body>
 </html>
