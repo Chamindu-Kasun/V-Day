@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>A tiny universe just for you 🌷</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@300;400;600&display=swap');
@@ -11,6 +11,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -109,17 +110,6 @@
             line-height: 1.2;
         }
 
-        .soft-sub {
-            text-align: center;
-            color: #7a4a5e;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            font-weight: 400;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            opacity: 0.8;
-        }
-
         .button-garden {
             display: flex;
             justify-content: center;
@@ -146,6 +136,13 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             border: 2px solid rgba(255,255,255,0.8);
             white-space: nowrap;
+            -webkit-touch-callout: none;
+            /* FIX: Full button clickable area */
+            display: inline-block;
+            width: auto;
+            min-width: 160px;
+            text-align: center;
+            z-index: 50;
         }
 
         .bloom-btn::before {
@@ -168,6 +165,7 @@
             color: white;
             border: 2px solid #fff5e6;
             box-shadow: 0 10px 30px #ffb6c1;
+            z-index: 60;
         }
 
         #yes-blossom:hover {
@@ -181,6 +179,12 @@
             color: #fdeff2;
             border: 2px solid #cfb3cd;
             max-width: 250px;
+            z-index: 70;
+            touch-action: pan-y;
+            /* FIX: Ensure full clickable area */
+            display: inline-block;
+            width: auto;
+            min-width: 160px;
         }
 
         .sparkle {
@@ -216,6 +220,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            pointer-events: none;
         }
 
         .cloud-message.show {
@@ -351,6 +356,7 @@
             transition: all 0.3s ease;
             z-index: 999;
             color: #6b4e5e;
+            -webkit-tap-highlight-color: transparent;
         }
 
         .music-charm:hover {
@@ -378,11 +384,15 @@
             .whisper-title { font-size: 2rem; }
             .button-garden { gap: 20px; }
             .bloom-btn { 
-                padding: 14px 30px; 
+                padding: 16px 30px; 
                 font-size: 1.1rem;
                 white-space: normal;
+                min-width: 140px;
             }
-            #no-blossom { max-width: 200px; }
+            #no-blossom { 
+                max-width: 200px;
+                min-width: 140px;
+            }
             .date-card { padding: 25px; }
             .date-card h2 { font-size: 2rem; }
         }
@@ -398,8 +408,6 @@
         <span>✨</span>
         <span id="cloud-text">psst... click the bloom</span>
     </div>
-
-    <!-- REMOVED: tiny-footnote div is completely gone! -->
 
     <div id="overlay" class="overlay"></div>
 
@@ -438,36 +446,38 @@
         </div>
     </div>
 
-    <audio id="sweet-melody" loop>
-        <source src="" type="audio/mpeg">
+    <!-- FIX: Audio with correct path and preload -->
+    <audio id="sweet-melody" preload="auto" loop>
+        <source src="music/beabadoobee - Glue Song (Lyrics).mp3" type="audio/mpeg">
+        Your browser doesn't support audio.
     </audio>
 
     <script>
         // ---------------------------------------------------------
-        // FIXED: No button with cooldown - actually clickable!
+        // FIXED: Audio now plays + full button clickable area!
         // ---------------------------------------------------------
         
         const soulStages = [
-            "assets/sappy-sappy-seals.gif",  // 0: happy seals (your GIF!)
-            "https://media1.tenor.com/m/uDugCXK4vI4AAAAd/chiikawa-hachiware.gif",   // 1: confused
-            "https://media.tenor.com/f_rkpJbH1s8AAAAj/somsom1012.gif",              // 2: pleading
-            "https://media.tenor.com/OGY9zdREsVAAAAAj/somsom1012.gif",              // 3: sad
-            "https://media1.tenor.com/m/WGfra-Y_Ke0AAAAd/chiikawa-sad.gif",         // 4: sadder
-            "https://media.tenor.com/CivArbX7NzQAAAAj/somsom1012.gif",              // 5: devastated
-            "https://media.tenor.com/5_tv1HquZlcAAAAj/chiikawa.gif",                // 6: very devastated
-            "https://media1.tenor.com/m/uDugCXK4vI4AAAAC/chiikawa-hachiware.gif"   // 7: crying
+            "assets/sappy-sappy-seals.gif",
+            "https://media1.tenor.com/m/uDugCXK4vI4AAAAd/chiikawa-hachiware.gif",
+            "https://media.tenor.com/f_rkpJbH1s8AAAAj/somsom1012.gif",
+            "https://media.tenor.com/OGY9zdREsVAAAAAj/somsom1012.gif",
+            "https://media1.tenor.com/m/WGfra-Y_Ke0AAAAd/chiikawa-sad.gif",
+            "https://media.tenor.com/CivArbX7NzQAAAAj/somsom1012.gif",
+            "https://media.tenor.com/5_tv1HquZlcAAAAj/chiikawa.gif",
+            "https://media1.tenor.com/m/uDugCXK4vI4AAAAC/chiikawa-hachiware.gif"
         ];
 
         const tenderRebukes = [
-            "no? 🥺",           // 1
-            "baba... 💕",       // 2
-            "pookie 💗",        // 3
-            "please? 🥺",       // 4
-            "don't 💔",         // 5
-            "stop 😢",          // 6
-            "you're mine 😭",   // 7
-            "last chance! 💗",  // 8
-            "can't catch me 🏃" // 9
+            "no? 🥺",
+            "baba... 💕",
+            "pookie 💗",
+            "please? 🥺",
+            "don't 💔",
+            "stop 😢",
+            "you're mine 😭",
+            "last chance! 💗",
+            "can't catch me 🏃"
         ];
 
         const earlyYesWhispers = [
@@ -494,10 +504,13 @@
         let yesCuriosityCount = 0;
         let noHeartbeatCount = 0;
         let runawayHeart = false;
-        let melodyPlaying = true;
+        let melodyPlaying = false; // Start false, will be set to true after first play
         let secretIndex = 0;
         let lastEscapeTime = 0;
         const ESCAPE_COOLDOWN = 800;
+        let audioPlayed = false; // Track if audio has been attempted
+        
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
         const soulGif = document.getElementById('soul-gif');
         const yesBlossom = document.getElementById('yes-blossom');
@@ -511,33 +524,71 @@
         const overlay = document.getElementById('overlay');
         const closeDate = document.getElementById('close-date');
 
-        // Music setup
-        melody.muted = true;
-        melody.volume = 0.25;
-        melody.play().then(() => {
-            melody.muted = false;
-        }).catch(() => {
-            document.addEventListener('click', () => {
-                melody.muted = false;
-                melody.play().catch(() => {});
-            }, { once: true });
-        });
+        // ---------------------------------------------------------
+        // FIXED: Audio playback with better mobile support
+        // ---------------------------------------------------------
+        
+        // Set audio properties
+        melody.volume = 0.4;
+        melody.muted = false;
+        melody.preload = "auto";
 
+        // Function to attempt playing audio
+        function playAudio() {
+            if (audioPlayed) return Promise.resolve();
+            
+            return melody.play()
+                .then(() => {
+                    console.log("Audio playing successfully");
+                    melodyPlaying = true;
+                    audioPlayed = true;
+                    musicCharm.textContent = '🎵';
+                })
+                .catch(error => {
+                    console.log("Audio autoplay blocked:", error);
+                    melodyPlaying = false;
+                    musicCharm.textContent = '🔇';
+                    // Will play on first interaction
+                });
+        }
+
+        // Try to play audio immediately (may be blocked by browser)
+        playAudio();
+
+        // FIX: Play audio on ANY user interaction (for mobile)
+        function enableAudioOnInteraction() {
+            if (!audioPlayed) {
+                playAudio().catch(() => {});
+            }
+        }
+
+        // Listen for first touch/click anywhere
+        document.addEventListener('click', enableAudioOnInteraction, { once: true });
+        document.addEventListener('touchstart', enableAudioOnInteraction, { once: true });
+
+        // Toggle music function
         function toggleMelody() {
             if (melodyPlaying) {
                 melody.pause();
                 melodyPlaying = false;
                 musicCharm.textContent = '🔇';
-                musicCharm.style.opacity = '0.8';
             } else {
-                melody.muted = false;
-                melody.play();
-                melodyPlaying = true;
-                musicCharm.textContent = '🎵';
-                musicCharm.style.opacity = '1';
+                melody.play()
+                    .then(() => {
+                        melodyPlaying = true;
+                        musicCharm.textContent = '🎵';
+                        audioPlayed = true;
+                    })
+                    .catch(e => {
+                        console.log("Play failed:", e);
+                    });
             }
         }
         musicCharm.addEventListener('click', toggleMelody);
+
+        // ---------------------------------------------------------
+        // Rest of the functions
+        // ---------------------------------------------------------
 
         function whisperMessage(msg) {
             cloudText.textContent = msg;
@@ -661,13 +712,19 @@
             
             revealSecretNote();
             
-            if (noHeartbeatCount >= 5 && !runawayHeart) {
+            if (noHeartbeatCount >= (isMobile ? 8 : 5) && !runawayHeart) {
                 runawayHeart = true;
                 noBlossom.style.position = 'relative';
                 noBlossom.style.left = '';
                 noBlossom.style.top = '';
-                whisperMessage("Catch me if you can !!! 🏃💨💗");
-                enableRunawayHeart();
+                
+                if (isMobile) {
+                    whisperMessage("You win! Now say yes? 💕");
+                    noBlossom.style.transform = 'scale(0.9)';
+                } else {
+                    whisperMessage("Catch me if you can !!! 🏃💨💗");
+                    enableRunawayHeart();
+                }
             }
             
             if (noHeartbeatCount === 3) {
@@ -676,12 +733,12 @@
         }
 
         function enableRunawayHeart() {
+            if (isMobile) return;
             noBlossom.addEventListener('mouseover', escapeMove);
-            noBlossom.addEventListener('touchstart', escapeMove, { passive: true });
         }
 
         function escapeMove(e) {
-            if (!runawayHeart) return;
+            if (isMobile || !runawayHeart) return;
             
             const now = Date.now();
             if (now - lastEscapeTime < ESCAPE_COOLDOWN) {
@@ -714,6 +771,15 @@
         noBlossom.addEventListener('click', handleNoClick);
         closeDate.addEventListener('click', closeDateCard);
         overlay.addEventListener('click', closeDateCard);
+
+        // FIX: Prevent zoom on double-tap but keep full clickable area
+        yesBlossom.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+        }, { passive: false });
+        
+        noBlossom.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+        }, { passive: false });
 
         setTimeout(() => {
             whisperMessage("baba... there's something I've been meaning to tell you 🌷");
